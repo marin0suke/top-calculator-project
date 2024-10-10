@@ -7,23 +7,28 @@ const displayElement = document.querySelector(".display"); // connects to displa
 const operands = document.querySelectorAll(".operand"); // get all operands.
 const operators = document.querySelectorAll(".operator"); // grab all signs/operators.
 
-operands.forEach(operand => { // make number button clicks display the number.
+operands.forEach(operand => { // iterate over all elements grabbed by operands var. (class operand in this case)
     operand.addEventListener("click", () => {
         const buttonValue = operand.textContent; //grabs what is in button text.
-        displayValue += buttonValue; // concats it to display value var.
-        displayElement.textContent = displayValue; // displayElement is what shows up on screen - equal it to displayValue so it shows up. 
-        if (currentOperator === null) { // 1st try to get operators to work. - set to left and right.
-            leftOperand = parseFloat(displayValue);
-            console.log(displayValue);
+
+        if(currentOperator !== null && displayValue === leftOperand.toString()) { // handle whether to reset screen or concat numbers clicked.
+            displayValue = buttonValue; // reset the display to the first pushed button. ! 
         } else {
-            rightOperand = parseFloat(displayValue);
-            console.log(displayValue);
+            displayValue += buttonValue; // concat, bc there is no operator yet, left operand isn't what is on display. (TEST THIS)
         }
-        console.log(displayValue);
-        console.log(leftOperand);
-        console.log(rightOperand);
+
+        displayElement.textContent = displayValue; // displayElement is what shows up on screen - equal it to displayValue so it shows up. 
+
+        if (currentOperator === null) { // now we are displaying what we need, we can conditionally set each operand.
+            leftOperand = parseFloat(displayValue); // set left to what is on display.
+            console.log("Left operand: ", leftOperand);
+        } else { // operator in play :
+            rightOperand = parseFloat(displayValue);
+            console.log("Right operand: ", rightOperand)
+        }
     });
 });
+
 
 operators.forEach(operator => { // grabs textcontent from operator buttons (don't display but store only)
     operator.addEventListener("click", () => {
@@ -35,10 +40,14 @@ operators.forEach(operator => { // grabs textcontent from operator buttons (don'
             case "×":
             case "÷":
                 currentOperator = buttonValue;
+                displayElement.textContent = displayValue; // actually show on screen. 
                 console.log(currentOperator);
+                // button effect to look pressed.
                 break;
             case "=":
                 operate();
+                displayValue = solution; // problem with this !! not sure.
+                displayElement.textContent = displayValue;
                 break;
             case "C":
                 clearCalc();
@@ -61,17 +70,20 @@ function clearCalc () {
 
 
 function operate(leftOperand, currentOperator, rightOperand) {
+    let solution; // 1st try to get solution working.
     switch (currentOperator) {
         case "+":
-            return leftOperand + rightOperand; // changed all from break to return so result is computed without need to extra vars. and exits this func. 
+            solution = leftOperand + rightOperand; // changed all from break to return so result is computed without need to extra vars. and exits this func. 
+            break;
         case "-":
-            return leftOperand - rightOperand;
+            solution = leftOperand - rightOperand;
         case "×":
             return leftOperand * rightOperand;
         case "÷":
             return leftOperand / rightOperand;
         default:
           return null;
-    }
+    } 
+    return parseFloat(solution);
 }
 
