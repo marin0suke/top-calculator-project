@@ -1,19 +1,24 @@
 let leftOperand;
 let rightOperand;
+let operator;
 
-function add(leftOperand, rightOperand) {
-    return leftOperand + rightOperand;
-};
-
-function subtract(leftOperand, rightOperand) {
-    return leftOperand - rightOperand;
-}
-
-function multiply(leftOperand, rightOperand) {
-    return leftOperand * rightOperand;
-}
-
-function divide(leftOperand, rightOperand) {
-    return leftOperand / rightOperand;
+function operate(leftOperand, operator, rightOperand) {
+    switch (operator) {
+        case "+":
+            leftOperand + rightOperand;
+            break;
+        case "-":
+            leftOperand - rightOperand;
+            break;
+        case "*":
+            leftOperand * rightOperand;
+            break;
+        case "/":
+            leftOperand / rightOperand;
+            break;
+        default:
+            // ?
+            break;
+    }
 }
 
