@@ -45,9 +45,8 @@ operators.forEach(operator => { // grabs textcontent from operator buttons (don'
                 // button effect to look pressed.
                 break;
             case "=":
-                operate();
-                displayValue = solution; // problem with this !! not sure.
-                displayElement.textContent = displayValue;
+                let result = operate(leftOperand, currentOperator, rightOperand);
+                displayElement.textContent = isNaN(result) ? "Error" : result; // i needed a result var lol. won't be displayValue bc result was created inside different function that had nothing to do with displayValue. 
                 break;
             case "C":
                 clearCalc();
@@ -71,19 +70,24 @@ function clearCalc () {
 
 function operate(leftOperand, currentOperator, rightOperand) {
     let solution; // 1st try to get solution working.
+
     switch (currentOperator) {
         case "+":
             solution = leftOperand + rightOperand; // changed all from break to return so result is computed without need to extra vars. and exits this func. 
             break;
         case "-":
             solution = leftOperand - rightOperand;
+            break;
         case "×":
-            return leftOperand * rightOperand;
+            solution = leftOperand * rightOperand;
+            break;
         case "÷":
-            return leftOperand / rightOperand;
+            solution = rightOperand !== 0 ? leftOperand / rightOperand : NaN;
+            break;
         default:
-          return null;
+            solution = NaN;
+            break;
     } 
-    return parseFloat(solution);
+    return solution;
 }
 
