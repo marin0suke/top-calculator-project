@@ -1,12 +1,11 @@
 let leftOperand;
 let rightOperand;
 let operator;
-
-let displayValue = ""; //
+let displayValue = ""; 
 
 const displayElement = document.querySelector(".display"); // connects to display html.
 const operands = document.querySelectorAll(".operand"); // get all operands.
-const signs = document.querySelectorAll(".signs"); // grab all signs/operators.
+const operators = document.querySelectorAll(".operator"); // grab all signs/operators.
 
 operands.forEach(operand => { // make number button clicks display the number.
     operand.addEventListener("click", () => {
@@ -16,16 +15,20 @@ operands.forEach(operand => { // make number button clicks display the number.
     });
 });
 
-signs.forEach(sign => { // grabs textcontent from operator buttons (don't display but store only)
-    sign.addEventListener("click", () => {
-        const buttonValue = sign.textContent;
+operators.forEach(operator => { // grabs textcontent from operator buttons (don't display but store only)
+    operator.addEventListener("click", () => {
+        const buttonValue = operator.textContent;
         // store operator if - there is no operator yet. ? but this can be replaced too..
         // if clear, then everything clear (run clear function)
+        if (buttonValue === "C") {
+            console.log("clear button clicked");
+            clearCalc();
+        }
         // if equals? run operate function.
     })
 })
 
-let clearCalc = () => {
+function clearCalc () {
     // reset everything.
     displayValue = "";
     leftOperand = null; // learned null is best for number vals - intentional assignment for "this has no value" but is still defined.
@@ -33,7 +36,6 @@ let clearCalc = () => {
     operator = null;
     displayElement.textContent = displayValue; // displays nothing.
 };
-
 
 
 function operate(leftOperand, operator, rightOperand) {
