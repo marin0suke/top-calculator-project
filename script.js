@@ -13,12 +13,15 @@ operands.forEach(operand => { // make number button clicks display the number.
         displayValue += buttonValue; // concats it to display value var.
         displayElement.textContent = displayValue; // displayElement is what shows up on screen - equal it to displayValue so it shows up. 
         if (currentOperator === null) { // 1st try to get operators to work. - set to left and right.
-            leftOperand = displayValue;
+            leftOperand = parseFloat(displayValue);
             console.log(displayValue);
-            console.log(leftOperand);
         } else {
-            rightOperand = displayValue;
+            rightOperand = parseFloat(displayValue);
+            console.log(displayValue);
         }
+        console.log(displayValue);
+        console.log(leftOperand);
+        console.log(rightOperand);
     });
 });
 
@@ -27,13 +30,14 @@ operators.forEach(operator => { // grabs textcontent from operator buttons (don'
         const buttonValue = operator.textContent;
         // store operator if - there is no operator yet. ? but this can be replaced too..
         switch (buttonValue) {
-            case "&#43":
-            case "&#8722":
-            case "&times":
-            case "&divide":
+            case "+":
+            case "-":
+            case "×":
+            case "÷":
                 currentOperator = buttonValue;
+                console.log(currentOperator);
                 break;
-            case "&#61":
+            case "=":
                 operate();
                 break;
             case "C":
@@ -42,6 +46,7 @@ operators.forEach(operator => { // grabs textcontent from operator buttons (don'
             default:
                 console.warn("Unexpected button: ", buttonValue);
         }
+        // add "button pressed" effect for one that is pushed. make so can change operators?
     })
 })
 
@@ -50,20 +55,20 @@ function clearCalc () {
     displayValue = "";
     leftOperand = null; // learned null is best for number vals - intentional assignment for "this has no value" but is still defined.
     rightOperand = null;
-    operator = null;
+    currentOperator = null;
     displayElement.textContent = displayValue; // displays nothing.
 };
 
 
 function operate(leftOperand, currentOperator, rightOperand) {
     switch (currentOperator) {
-        case "&#43":
+        case "+":
             return leftOperand + rightOperand; // changed all from break to return so result is computed without need to extra vars. and exits this func. 
-        case "&#8722":
+        case "-":
             return leftOperand - rightOperand;
-        case "&times":
+        case "×":
             return leftOperand * rightOperand;
-        case "&divide":
+        case "÷":
             return leftOperand / rightOperand;
         default:
           return null;
