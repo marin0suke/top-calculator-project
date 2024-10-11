@@ -11,8 +11,8 @@ operands.forEach(operand => { // iterate over all elements grabbed by operands v
     operand.addEventListener("click", () => {
         const buttonValue = operand.textContent; //grabs what is in button text.
 
-        if(currentOperator !== null && displayValue === leftOperand.toString()) { // handle whether to reset screen or concat numbers clicked.
-            displayValue = buttonValue; // reset the display to the first pushed button. ! 
+        if(currentOperator !== null && rightOperand === null) { // handle whether to set displayValue or concat numbers clicked.
+            displayValue = buttonValue; 
         } else {
             displayValue += buttonValue; // concat, bc there is no operator yet, left operand isn't what is on display. (TEST THIS)
         }
@@ -24,11 +24,10 @@ operands.forEach(operand => { // iterate over all elements grabbed by operands v
             console.log("Left operand: ", leftOperand);
         } else { // operator in play :
             rightOperand = parseFloat(displayValue);
-            console.log("Right operand: ", rightOperand)
+            console.log("Right operand: ", rightOperand); 
         }
     });
 });
-
 
 operators.forEach(operator => { // grabs textcontent from operator buttons (don't display but store only)
     operator.addEventListener("click", () => {
@@ -39,8 +38,15 @@ operators.forEach(operator => { // grabs textcontent from operator buttons (don'
             case "-":
             case "×":
             case "÷":
+                // add check for if there is already all three vars set:
+                if (leftOperand !== null && currentOperator !== null && rightOperand !== null) {
+                    const result = operate(leftOperand, currentOperator, rightOperand);
+                    displayElement.textContent = result; // display result instead of display.
+                    leftOperand = result; // use result as new leftOperand.
+                    rightOperand = null; // remove rightOperand.
+                }
+
                 currentOperator = buttonValue;
-                displayElement.textContent = displayValue; // actually show on screen. 
                 console.log(currentOperator);
                 // button effect to look pressed.
                 break;
