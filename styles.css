@@ -1,28 +1,28 @@
-.container {
+body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 350px;
-    width: 200px; /*when added hardcoded size values, container stopped being centered? */
+    min-height: 100vh; 
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
 }
 
-button {
-    height: 50px;
-    width: 50px;
-    border-radius: 15%;
-    margin: 2px;
-}
-
-.operand {
-    background-color: orange;
-}
-
-.operator {
-    background-color: teal;
+.container {
+    display: flex;
+    flex-direction: column;
 }
 
 .display {
     background-color: lightgray;
-    border: 1px solid black;
-    border-radius: 15%;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px /* match to .buttons */
+}
+
+.buttons {
+    margin: 5px; /*match to .display margin*/
+}
+
+button {
+    
 }
