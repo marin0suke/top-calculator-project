@@ -62,8 +62,12 @@ operators.forEach(operator => { // grabs textcontent from operator buttons (don'
                 // button effect to look pressed.
                 break;
             case "=":
-                let result = operate(leftOperand, currentOperator, rightOperand);
-                displayElement.textContent = isNaN(result) ? "Error" : result; // i needed a result var lol. won't be displayValue bc result was created inside different function that had nothing to do with displayValue. 
+                if (leftOperand === null || operator === null || rightOperand === null) {
+                    displayElement.textContent = displayValue; // if equals is pressed but there is nothing stored in the display value - display nothing.
+                } else {
+                    let result = operate(leftOperand, currentOperator, rightOperand);
+                    displayElement.textContent = isNaN(result) ? "Error" : result; // i needed a result var lol. won't be displayValue bc result was created inside different function that had nothing to do with displayValue. 
+                }
                 break;
             case "C":
                 clearCalc();
