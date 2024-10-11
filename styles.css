@@ -10,19 +10,31 @@ body {
 .container {
     display: flex;
     flex-direction: column;
+    width: 320px;
 }
 
 .display {
     background-color: lightgray;
     border-radius: 5px;
-    padding: 5px;
-    margin: 5px /* match to .buttons */
+    padding: 10px;
+    margin: 5px; /* match to .buttons */
+    text-align: end;
+    font-size: 2em;
 }
 
 .buttons {
     margin: 5px; /*match to .display margin*/
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* flex-direction: column-reverse; /* so C is at top and numebrs on bottom*/    gap: 5px; */
 }
 
 button {
-    
+    flex: 1 1 23%; /*each button takes roughly 23% of the row width*/
+    padding: 20px;
+    font-size: 1.5em;
+    border-radius: 5px;
+    max-width: calc(25% - 5px); /*makes sure buttons are uniform within row*/
 }
+
