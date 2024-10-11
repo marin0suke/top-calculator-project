@@ -6,27 +6,38 @@ let displayValue = "";
 const displayElement = document.querySelector(".display"); // connects to display html.
 const operands = document.querySelectorAll(".operand"); // get all operands.
 const operators = document.querySelectorAll(".operator"); // grab all signs/operators.
+const decimal = document.querySelector("#decimal"); // grab decimal point by its id. - create separate event listener for decimal.
+
+decimal.addEventListener("click", () => {
+    if(!displayValue.includes(".")) { // 2nd attempt - create own event listener.
+        displayValue += ".";
+        displayElement.textContent = displayValue; // 
+    };
+});
+
 
 operands.forEach(operand => { // iterate over all elements grabbed by operands var. (class operand in this case)
-    operand.addEventListener("click", () => {
-        const buttonValue = operand.textContent; //grabs what is in button text.
+    if (operand.id !== "decimal") {
+        operand.addEventListener("click", () => {
+            const buttonValue = operand.textContent; //grabs what is in button text.
 
-        if(currentOperator !== null && rightOperand === null) { // handle whether to set displayValue or concat numbers clicked.
-            displayValue = buttonValue; 
-        } else {
-            displayValue += buttonValue; // concat, bc there is no operator yet, left operand isn't what is on display. (TEST THIS)
-        }
+            if(currentOperator !== null && rightOperand === null) { // handle whether to set displayValue or concat numbers clicked.
+                displayValue = buttonValue; 
+            } else {
+                displayValue += buttonValue; // concat, bc there is no operator yet, left operand isn't what is on display. (TEST THIS)
+            };
 
-        displayElement.textContent = displayValue; // displayElement is what shows up on screen - equal it to displayValue so it shows up. 
+            displayElement.textContent = displayValue; // displayElement is what shows up on screen - equal it to displayValue so it shows up. 
 
-        if (currentOperator === null) { // now we are displaying what we need, we can conditionally set each operand.
-            leftOperand = parseFloat(displayValue); // set left to what is on display.
-            console.log("Left operand: ", leftOperand);
-        } else { // operator in play :
-            rightOperand = parseFloat(displayValue);
-            console.log("Right operand: ", rightOperand); 
-        }
-    });
+            if (currentOperator === null) { // now we are displaying what we need, we can conditionally set each operand.
+                leftOperand = parseFloat(displayValue); // set left to what is on display.
+                console.log("Left operand: ", leftOperand);
+            } else { // operator in play :
+                rightOperand = parseFloat(displayValue);
+                console.log("Right operand: ", rightOperand); 
+            };
+        });
+    };
 });
 
 operators.forEach(operator => { // grabs textcontent from operator buttons (don't display but store only)
@@ -44,7 +55,7 @@ operators.forEach(operator => { // grabs textcontent from operator buttons (don'
                     displayElement.textContent = result; // display result instead of display.
                     leftOperand = result; // use result as new leftOperand.
                     rightOperand = null; // remove rightOperand.
-                }
+                };
 
                 currentOperator = buttonValue;
                 console.log(currentOperator);
@@ -59,10 +70,10 @@ operators.forEach(operator => { // grabs textcontent from operator buttons (don'
                 break;
             default:
                 console.warn("Unexpected button: ", buttonValue);
-        }
+        };
         // add "button pressed" effect for one that is pushed. make so can change operators?
-    })
-})
+    });
+});
 
 function clearCalc () {
     // reset everything.
