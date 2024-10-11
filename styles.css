@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 350px;
+    width: 200px; /*when added hardcoded size values, container stopped being centered? */
+}
+
+button {
+    height: 50px;
+    width: 50px;
+    border-radius: 15%;
+    margin: 2px;
+}
+
+.operand {
+    background-color: orange;
+}
+
+.operator {
+    background-color: teal;
+}
+
+.display {
+    background-color: lightgray;
+    border: 1px solid black;
+    border-radius: 15%;
+}
