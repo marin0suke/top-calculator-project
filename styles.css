@@ -20,7 +20,7 @@ body {
     margin: 5px; /* match to .buttons */
     text-align: end;
     font-size: 2em;
-    min-height: fit-content;
+    min-height: fit-content; /* also have 0 set to auto be in display */
 }
 
 .buttons {
@@ -28,7 +28,8 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    /* flex-direction: column-reverse; /* so C is at top and numebrs on bottom*/    gap: 5px; */
+    gap: 5px;
+    /* flex-direction: column-reverse; /* so C is at top and numebrs on bottom*/  
 }
 
 button {
@@ -37,5 +38,6 @@ button {
     font-size: 1.5em;
     border-radius: 5px;
     max-width: calc(25% - 5px); /*makes sure buttons are uniform within row*/
+    
 }
 
