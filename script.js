@@ -1,7 +1,7 @@
 let leftOperand = null;
 let rightOperand = null;
 let currentOperator = null;
-let displayValue = ""; 
+let displayValue = "0"; 
 
 const displayElement = document.querySelector(".display"); // connects to display html.
 const operands = document.querySelectorAll(".operand"); // get all operands.
@@ -81,7 +81,7 @@ operators.forEach(operator => { // grabs textcontent from operator buttons (don'
 
 function clearCalc () {
     // reset everything.
-    displayValue = "";
+    displayValue = "0";
     leftOperand = null; // learned null is best for number vals - intentional assignment for "this has no value" but is still defined.
     rightOperand = null;
     currentOperator = null;

@@ -20,6 +20,7 @@ body {
     margin: 5px; /* match to .buttons */
     text-align: end;
     font-size: 2em;
+    min-height: fit-content;
 }
 
 .buttons {
