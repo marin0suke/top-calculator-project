@@ -11,6 +11,9 @@ body {
     display: flex;
     flex-direction: column;
     width: 320px;
+    background-color: bisque;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .display {

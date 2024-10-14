@@ -7,6 +7,7 @@ const displayElement = document.querySelector(".display"); // connects to displa
 const operands = document.querySelectorAll(".operand"); // get all operands.
 const operators = document.querySelectorAll(".operator"); // grab all signs/operators.
 const decimal = document.querySelector("#decimal"); // grab decimal point by its id. - create separate event listener for decimal.
+const backspace = document.querySelector("#backspace");
 
 decimal.addEventListener("click", () => {
     if(!displayValue.includes(".")) { // 2nd attempt - create own event listener.
@@ -15,6 +16,15 @@ decimal.addEventListener("click", () => {
     };
 });
 
+backspace.addEventListener("click", () => {
+    if (displayValue.length > 1) {
+        displayValue = displayValue.slice(0, -1); // removes last character.
+    } else {
+        displayValue = "0";
+    }
+
+    displayElement.textContent = displayValue; // update display.
+});
 
 operands.forEach(operand => { // iterate over all elements grabbed by operands var. (class operand in this case)
     if (operand.id !== "decimal") {
