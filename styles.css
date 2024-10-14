@@ -24,6 +24,7 @@ body {
     text-align: end;
     font-size: 2em;
     min-height: fit-content; /* also have 0 set to auto be in display */
+    box-shadow: inset 2px 2px 5px grey;
 }
 
 .buttons {
@@ -41,6 +42,8 @@ button {
     font-size: 1.5em;
     border-radius: 5px;
     max-width: calc(25% - 5px); /*makes sure buttons are uniform within row*/
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2); /* Regular shadow */
+
 }
 
 #backspace {
@@ -53,4 +56,9 @@ button {
 
 #equals {
     min-width: 150px;
+}
+
+button:active {
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Smaller shadow to look pressed */
+    transform: translate(2px, 2px); /* Moves button slightly for pressed effect */
 }
