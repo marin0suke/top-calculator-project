@@ -31,7 +31,7 @@ operands.forEach(operand => { // iterate over all elements grabbed by operands v
         operand.addEventListener("click", () => {
             const buttonValue = operand.textContent; //grabs what is in button text.
 
-            if(currentOperator !== null && rightOperand === null) { // handle whether to set displayValue or concat numbers clicked.
+            if(displayValue === "0" || currentOperator !== null && rightOperand === null) { // handle whether to set displayValue or concat numbers clicked.
                 displayValue = buttonValue; 
             } else {
                 displayValue += buttonValue; // concat, bc there is no operator yet, left operand isn't what is on display. (TEST THIS)
